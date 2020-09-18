@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const HomeContainer = styled.div`
@@ -10,15 +10,21 @@ const HomeContainer = styled.div`
   height: 90vh;
   background-color: #e2d9d9;
 
-  .home::visited {
-    color: blue;
+  input {
+    background-color: red;
   }
 `;
 
 const Home = () => {
+  const [planetInput, setPlanetInput] = useState('');
+
   return (
     <HomeContainer>
-      <h2 className="home">Home</h2>
+      <input
+        placeholder="Find planets for names"
+        value={planetInput}
+        onChange={(e) => setPlanetInput(e.target.value)}
+      />
     </HomeContainer>
   );
 };
