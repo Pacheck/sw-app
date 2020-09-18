@@ -1,30 +1,26 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
-
-const HomeContainer = styled.div`
-  * {
-    margin: 0;
-  }
-
-  width: 100vw;
-  height: 90vh;
-  background-color: #e2d9d9;
-
-  input {
-    background-color: red;
-  }
-`;
+import HomeContainer from './styledComponent/HomeContainer.js';
 
 const Home = () => {
   const [planetInput, setPlanetInput] = useState('');
 
+  //Methods
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log(planetInput);
+  }
+
   return (
     <HomeContainer>
-      <input
-        placeholder="Find planets for names"
-        value={planetInput}
-        onChange={(e) => setPlanetInput(e.target.value)}
-      />
+      <form onSubmit={handleSubmit}>
+        <input
+          placeholder="Find planets for names"
+          value={planetInput}
+          onChange={(e) => setPlanetInput(e.target.value)}
+        />
+        <button>Search</button>
+      </form>
     </HomeContainer>
   );
 };
