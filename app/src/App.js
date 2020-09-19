@@ -5,7 +5,7 @@ import Navbar from './components/Navbar.js';
 import HomeContainer from './components/Home.js';
 
 import './App.css';
-import { Route, Router, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 function App() {
   return (
