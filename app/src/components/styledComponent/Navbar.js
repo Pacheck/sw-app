@@ -10,7 +10,9 @@ const Nav = styled.nav`
   align-items: center;
 
   color: white;
-  background-color: black;
+
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/opacity/see-through */
 
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 0.7rem;
@@ -19,9 +21,14 @@ const Nav = styled.nav`
     text-decoration: none;
   }
 
+  /* filter: blur(6px); */
+
   @media (min-width: 400px) {
     font-size: 1.2rem;
-    background-color: red;
+    background-color: transparent;
+
+    h3 {
+    }
   }
 `;
 
