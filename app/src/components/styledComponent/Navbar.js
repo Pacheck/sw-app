@@ -5,6 +5,7 @@ const Nav = styled.nav`
   height: 10vh;
 
   display: flex;
+
   justify-content: space-evenly;
   align-items: center;
 
@@ -14,7 +15,11 @@ const Nav = styled.nav`
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 0.7rem;
 
-  @media (max-width: 27rem) {
+  a {
+    text-decoration: none;
+  }
+
+  @media (min-width: 400px) {
     font-size: 1.2rem;
     background-color: red;
   }
