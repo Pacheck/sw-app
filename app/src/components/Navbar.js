@@ -9,10 +9,9 @@ const Navbar = () => {
   return (
     <Nav>
       <h3>
-        <Link to="/">Home</Link>
+        <Link to="/">Planetas</Link>
       </h3>
-      <h3>Items</h3>
-      <h3>About</h3>
+      <h3>Detalhes</h3>
     </Nav>
   );
 };

@@ -15,7 +15,7 @@ const Home = () => {
     <HomeContainer>
       <form onSubmit={handleSubmit}>
         <input
-          placeholder="Find planets for names"
+          placeholder="Find planets by names"
           value={planetInput}
           onChange={(e) => setPlanetInput(e.target.value)}
         />
