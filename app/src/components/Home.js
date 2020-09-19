@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import HomeContainer from './styledComponent/HomeContainer.js';
 
+import BG from '../assets/bg-01.jpg';
+
 const Home = () => {
   const [planetInput, setPlanetInput] = useState('');
-
   //Methods
 
   function handleSubmit(e) {

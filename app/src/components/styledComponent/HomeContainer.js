@@ -7,7 +7,8 @@ const HomeContainer = styled.div`
 
   width: 100vw;
   height: 90vh;
-  background-color: #e2d9d9;
+  /* background-color: #e2d9d9; */
+  background-color: transparent;
 
   form {
     display: flex;
