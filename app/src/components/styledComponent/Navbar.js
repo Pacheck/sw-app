@@ -21,6 +21,11 @@ const Nav = styled.nav`
     text-decoration: none;
   }
 
+  a:visited {
+    color: white;
+    background-color: black;
+  }
+
   /* filter: blur(6px); */
 
   @media (min-width: 400px) {

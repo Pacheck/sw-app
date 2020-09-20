@@ -1,6 +1,4 @@
 .App {
   text-align: center;
-  background-image: url('./assets/bg-FS.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.89), rgb(61, 60, 60));
 }
