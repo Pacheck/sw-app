@@ -1,15 +1,29 @@
 import React, { useState } from 'react';
-import HomeContainer from './styledComponent/HomeContainer.js';
+import { useEffect } from 'react';
+import Axios from 'axios';
 
-import BG from '../assets/bg-01.jpg';
+//components
+import HomeContainer from './styledComponent/HomeContainer.js';
 
 const Home = () => {
   const [planetInput, setPlanetInput] = useState('');
+  const [allPlanetsList, setAllPlanetsList] = useState([]);
+
+  useEffect(() => {
+    getAllPlanets();
+  }, []);
+
   //Methods
+
+  async function getAllPlanets() {
+    await Axios.get('https://swapi.dev/api/planets/')
+      .then((res) => setAllPlanetsList(res))
+      .catch((err) => console.log(err));
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(planetInput);
+    console.log(allPlanetsList);
   }
 
   return (
@@ -22,6 +36,7 @@ const Home = () => {
         />
         <button>Search</button>
       </form>
+      <hr style={{ borderTop: '1px solid  #a9a9a9a9', marginTop: '10px' }} />
     </HomeContainer>
   );
 };
