@@ -33,6 +33,11 @@ const Planet = ({ planetInfo }) => {
       <h2>{planetInfo.terrain}</h2>
       <h2>{planetInfo.diameter}</h2>
       <h2>{planetInfo.climate}</h2>
+      {filmesPresentes.title ? (
+        <h3>{`${filmesPresentes.title}, episode: ${filmesPresentes.episode} `}</h3>
+      ) : (
+        <h3>Loading data...</h3>
+      )}
     </div>
   );
 };
