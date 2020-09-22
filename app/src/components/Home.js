@@ -29,7 +29,7 @@ const Home = () => {
 
   return (
     <HomeContainer>
-      <form onSubmit={handleSubmit}>
+      {/* <form onSubmit={handleSubmit}>
         <input
           placeholder="Find planets by names"
           value={planetInput}
@@ -38,13 +38,16 @@ const Home = () => {
         <button>Search</button>
       </form>
 
-      <hr style={{ borderTop: '1px solid  #a9a9a9a9', marginTop: '10px' }} />
+      <hr
+        style={{
+          borderTop: '1px solid  #a9a9a9a9',
+          marginTop: '10px',
+        }}
+      /> */}
 
-      <div>
-        {allPlanetsList.map((planet) => {
-          return <Planet planetInfo={planet} key={planet.name} />;
-        })}
-      </div>
+      {allPlanetsList.map((planet) => {
+        return <Planet planetInfo={planet} key={planet.name} />;
+      })}
     </HomeContainer>
   );
 };
