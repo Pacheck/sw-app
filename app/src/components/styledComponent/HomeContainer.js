@@ -3,7 +3,16 @@ import styled from 'styled-components';
 const HomeContainer = styled.div`
   width: 100vw;
   height: 90vh;
-  /* background-color: #e2d9d9; */
+
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; */
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-content: center;
 
   overflow-y: scroll;
 
