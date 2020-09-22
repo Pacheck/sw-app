@@ -27,6 +27,10 @@ const Home = () => {
     console.log(allPlanetsList);
   }
 
+  function handlerPlanetClick(planetInfo) {
+    console.log(planetInfo);
+  }
+
   return (
     <HomeContainer>
       {/* <form onSubmit={handleSubmit}>
@@ -46,7 +50,13 @@ const Home = () => {
       /> */}
 
       {allPlanetsList.map((planet) => {
-        return <Planet planetInfo={planet} key={planet.name} />;
+        return (
+          <Planet
+            planetInfo={planet}
+            key={planet.name}
+            handlerPlanetClick={handlerPlanetClick}
+          />
+        );
       })}
     </HomeContainer>
   );
