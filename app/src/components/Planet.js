@@ -44,10 +44,7 @@ const Planet = ({ planetInfo, handlerPlanetClick }) => {
   }
 
   return (
-    <Link
-      onClick={() => console.log('Link clicado')}
-      to={{ pathname: '/Details', state: detailedInfo }}
-    >
+    <Link to={{ pathname: '/Details', state: detailedInfo }}>
       <PlanetsContainer
         onClick={() => {
           // handlerPlanetClick(planetInfo);
