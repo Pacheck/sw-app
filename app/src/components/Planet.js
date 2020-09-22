@@ -7,12 +7,15 @@ import { Link } from 'react-router-dom';
 
 import PlanetsContainer from './styledComponent/PlanetContainer.js';
 
-const Planet = ({ planetInfo }) => {
+const Planet = ({ planetInfo, handlerPlanetClick }) => {
   const films = planetInfo.films;
+
   const [filmesPresentes, setFilmesPresentes] = useState([]);
+  const [detailedInfo, setDetailedInfo] = useState('');
 
   useEffect(() => {
     getFilmPresentData();
+    getPlanetDetailedInfo();
   }, []);
 
   //Methods
@@ -30,11 +33,26 @@ const Planet = ({ planetInfo }) => {
     });
   }
 
-  console.log(filmesPresentes);
+  async function getPlanetDetailedInfo() {
+    await Axios.get(`https://swapi.dev/api/planets/?search=${planetInfo.name}`)
+      .then((res) => {
+        const data = res.data.results[0];
+
+        setDetailedInfo(data);
+      })
+      .catch((err) => console.log('getPLanetDetailedInfo ') + err);
+  }
 
   return (
-    <Link to="/Details">
-      <PlanetsContainer>
+    <Link
+      onClick={() => console.log('Link clicado')}
+      to={{ pathname: '/Details', state: detailedInfo }}
+    >
+      <PlanetsContainer
+        onClick={() => {
+          // handlerPlanetClick(planetInfo);
+        }}
+      >
         <h2>{planetInfo.name}</h2>
         <h2>{planetInfo.terrain}</h2>
         <h2>{planetInfo.diameter}</h2>
