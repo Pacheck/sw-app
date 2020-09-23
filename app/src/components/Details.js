@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
 import DetailsContainer from './styledComponent/DetailsContainer.js';
+import Natives from './Natives.js';
 
 const Details = (props) => {
+  const planetDetails = props.location.state;
+
   const [nativeList, setNativeList] = useState([]);
 
-  const planetDetails = props.location.state;
   const {
     name,
     orbital_paeriod,
@@ -15,9 +17,10 @@ const Details = (props) => {
     gravity,
     terrain,
     population,
+    residents,
   } = props.location.state;
 
-  console.log(planetDetails);
+  // console.log(planetDetails);
 
   return (
     <DetailsContainer>
@@ -29,7 +32,7 @@ const Details = (props) => {
       <h2>{gravity}</h2>
       <h2>{terrain}</h2>
       <h2>{population}</h2>
-      <h2></h2>
+      <Natives residents={residents} />
     </DetailsContainer>
   );
 };
