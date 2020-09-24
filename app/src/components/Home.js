@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import Axios from 'axios';
+import ReactPaginate from 'react-paginate';
 
 //components
 import HomeContainer from './styledComponent/HomeContainer.js';
@@ -31,6 +32,10 @@ const Home = () => {
     console.log(planetInfo);
   }
 
+  function handlePageClick(e) {
+    console.log(e.selected);
+  }
+
   return (
     <HomeContainer>
       {/* <form onSubmit={handleSubmit}>
@@ -58,6 +63,12 @@ const Home = () => {
           />
         );
       })}
+      <ReactPaginate
+        onPageChange={handlePageClick}
+        pageCount={6}
+        pageRangeDisplayed={6}
+        marginPagesDisplayed={2}
+      />
     </HomeContainer>
   );
 };
