@@ -20,18 +20,16 @@ const Details = (props) => {
     residents,
   } = props.location.state;
 
-  // console.log(planetDetails);
-
   return (
     <DetailsContainer>
-      <h2>{name}</h2>
-      <h2>{rotation_period}</h2>
-      <h2>{orbital_paeriod}</h2>
-      <h2>{diameter}</h2>
-      <h2>{climate}</h2>
-      <h2>{gravity}</h2>
-      <h2>{terrain}</h2>
-      <h2>{population}</h2>
+      <h2>Name: {name}</h2>
+      <h2>Rotation Period: {rotation_period}</h2>
+      <h2>Orbital Period: {orbital_paeriod}</h2>
+      <h2>Diameter: {diameter}</h2>
+      <h2>Climate: {climate}</h2>
+      <h2>Gravity: {gravity}</h2>
+      <h2>Terrain: {terrain}</h2>
+      <h2>Population: {population}</h2>
       <Natives residents={residents} />
     </DetailsContainer>
   );
