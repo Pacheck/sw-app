@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Nav = styled.nav`
   width: 100vw;
-  height: 10vh;
+  height: 7vh;
 
   display: flex;
 

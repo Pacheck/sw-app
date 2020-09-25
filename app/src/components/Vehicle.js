@@ -12,7 +12,7 @@ const Vehicle = ({ data }) => {
 
   function getVehicle() {
     console.log(data.vehicles);
-    if (data.vehicles.length !== 0) {
+    if (data.vehicles.length > 0) {
       data.vehicles.map((carrin) => {
         Axios.get(carrin).then((res) =>
           setVehicle((prevState) => [...prevState, res.data])
@@ -20,23 +20,17 @@ const Vehicle = ({ data }) => {
       });
     } else {
       console.log('sem money, sem carro');
+      setVehicle((prevState) => [{ name: 'unknown' }]);
     }
   }
 
-  console.log(vehicle);
+  // console.log(vehicle);
 
   return (
     <div>
-      Vehicles :
-      {vehicle ? (
-        <div>
-          {vehicle.map((carro) => {
-            return <p key={carro.url}>{carro.name}</p>;
-          })}
-        </div>
-      ) : (
-        <p>potato</p>
-      )}
+      {vehicle.map((carro) => {
+        return <div key={carro.name}>Vehicles: {carro.name}</div>;
+      })}
     </div>
   );
 };
