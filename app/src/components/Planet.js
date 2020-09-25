@@ -7,10 +7,11 @@ import { Link } from 'react-router-dom';
 
 import PlanetsContainer from './styledComponent/PlanetContainer.js';
 
-const Planet = ({ planetInfo, handlerPlanetClick }) => {
-  const films = planetInfo.films;
-
-  const [filmesPresentes, setFilmesPresentes] = useState([]);
+const Planet = ({ planetInfo }) => {
+  const [filmesPresentes, setFilmesPresentes] = useState({
+    title: '',
+    episode: '',
+  });
   const [detailedInfo, setDetailedInfo] = useState('');
 
   useEffect(() => {
@@ -21,16 +22,24 @@ const Planet = ({ planetInfo, handlerPlanetClick }) => {
   //Methods
 
   async function getFilmPresentData() {
-    films.map((film) => {
-      Axios.get(film)
-        .then((res) =>
-          setFilmesPresentes({
-            title: res.data.title,
-            episode: res.data.episode_id,
-          })
-        )
-        .then((err) => console.log('getFilmPresentData axios error ' + err));
-    });
+    if (planetInfo.films.length > 0) {
+      console.log(planetInfo.films);
+      planetInfo.films.map((film) => {
+        Axios.get(film)
+          .then((res) =>
+            setFilmesPresentes({
+              title: res.data.title,
+              episode: res.data.episode_id,
+            })
+          )
+          .catch((err) => console.log(err));
+      });
+    } else {
+      setFilmesPresentes({
+        title: 'unknown',
+        episode: 'unknown',
+      });
+    }
   }
 
   async function getPlanetDetailedInfo() {
@@ -43,13 +52,11 @@ const Planet = ({ planetInfo, handlerPlanetClick }) => {
       .catch((err) => console.log('getPLanetDetailedInfo ') + err);
   }
 
+  //arrumar o loading data
+
   return (
     <Link to={{ pathname: '/Details', state: detailedInfo }}>
-      <PlanetsContainer
-        onClick={() => {
-          // handlerPlanetClick(planetInfo);
-        }}
-      >
+      <PlanetsContainer>
         <h2>{planetInfo.name}</h2>
         <h2>{planetInfo.terrain}</h2>
         <h2>{planetInfo.diameter}</h2>
