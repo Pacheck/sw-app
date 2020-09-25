@@ -10,16 +10,32 @@ import Planet from './Planet.js';
 const Home = () => {
   const [planetInput, setPlanetInput] = useState('');
   const [allPlanetsList, setAllPlanetsList] = useState([]);
+  const [page, setPage] = useState({
+    page: 0,
+    pageRange: 0,
+  });
 
   useEffect(() => {
     getAllPlanets();
-  }, []);
+  }, [page.page]);
 
   //Methods
 
   async function getAllPlanets() {
-    await Axios.get('https://swapi.dev/api/planets/')
-      .then((res) => setAllPlanetsList(res.data.results))
+    const pageIndex = page.page === 0 ? 1 : page.page;
+
+    await Axios.get(`https://swapi.dev/api/planets/?page=${pageIndex}`)
+      .then((res) => {
+        const planetCounter = res.data.count;
+
+        setPage((prevState) => ({
+          ...prevState,
+          pageRange: planetCounter / 10,
+        }));
+
+        setAllPlanetsList(res.data.results);
+        console.log(res.data.results);
+      })
       .catch((err) => console.log(err));
   }
 
@@ -33,8 +49,14 @@ const Home = () => {
   }
 
   function handlePageClick(e) {
+    setPage((prevState) => ({
+      ...prevState,
+      page: e.selected + 1,
+    }));
     console.log(e.selected);
   }
+
+  console.log(page);
 
   return (
     <HomeContainer>
@@ -64,8 +86,9 @@ const Home = () => {
         );
       })}
       <ReactPaginate
+        containerClassName="Pagination"
         onPageChange={handlePageClick}
-        pageCount={6}
+        pageCount={page.pageRange}
         pageRangeDisplayed={6}
         marginPagesDisplayed={2}
       />
