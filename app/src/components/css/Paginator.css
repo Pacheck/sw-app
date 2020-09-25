@@ -1,0 +1,19 @@
+.Pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  cursor: pointer;
+}
+
+.Pagination li {
+  margin-left: 10px;
+}
+
+.Pagination li a {
+  padding: 0 10px;
+}
+
+.Pagination ul {
+  height: 30px;
+}
