@@ -3,6 +3,8 @@ import { useEffect } from 'react';
 import Axios from 'axios';
 import ReactPaginate from 'react-paginate';
 
+import './css/Paginator.css';
+
 //components
 import HomeContainer from './styledComponent/HomeContainer.js';
 import Planet from './Planet.js';
@@ -34,7 +36,7 @@ const Home = () => {
         }));
 
         setAllPlanetsList(res.data.results);
-        console.log(res.data.results);
+        // console.log(res.data.results);
       })
       .catch((err) => console.log(err));
   }
@@ -59,8 +61,9 @@ const Home = () => {
   console.log(page);
 
   return (
-    <HomeContainer>
-      {/* <form onSubmit={handleSubmit}>
+    <>
+      <HomeContainer>
+        {/* <form onSubmit={handleSubmit}>
         <input
           placeholder="Find planets by names"
           value={planetInput}
@@ -76,15 +79,16 @@ const Home = () => {
         }}
       /> */}
 
-      {allPlanetsList.map((planet) => {
-        return (
-          <Planet
-            planetInfo={planet}
-            key={planet.name}
-            handlerPlanetClick={handlerPlanetClick}
-          />
-        );
-      })}
+        {allPlanetsList.map((planet) => {
+          return (
+            <Planet
+              planetInfo={planet}
+              key={planet.name}
+              handlerPlanetClick={handlerPlanetClick}
+            />
+          );
+        })}
+      </HomeContainer>
       <ReactPaginate
         containerClassName="Pagination"
         onPageChange={handlePageClick}
@@ -92,7 +96,7 @@ const Home = () => {
         pageRangeDisplayed={6}
         marginPagesDisplayed={2}
       />
-    </HomeContainer>
+    </>
   );
 };
 

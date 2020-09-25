@@ -43,12 +43,6 @@ const HomeContainer = styled.div`
 
   @media (min-width: 400px) {
   }
-
-  .Pagination {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
 `;
 
 export default HomeContainer;
