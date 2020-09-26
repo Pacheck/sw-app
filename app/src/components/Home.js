@@ -91,13 +91,13 @@ const Home = ({ title }) => {
           );
         })}
       </HomeContainer>
-      <ReactPaginate
+      {/* <ReactPaginate
         containerClassName="Pagination"
         onPageChange={handlePageClick}
         pageCount={page.pageRange}
         pageRangeDisplayed={6}
         marginPagesDisplayed={2}
-      />
+      /> */}
     </>
   );
 };
