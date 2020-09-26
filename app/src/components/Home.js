@@ -9,13 +9,15 @@ import './css/Paginator.css';
 import HomeContainer from './styledComponent/HomeContainer.js';
 import Planet from './Planet.js';
 
-const Home = () => {
+const Home = ({ title }) => {
   const [planetInput, setPlanetInput] = useState('');
   const [allPlanetsList, setAllPlanetsList] = useState([]);
   const [page, setPage] = useState({
     page: 0,
     pageRange: 0,
   });
+
+  console.log(title);
 
   useEffect(() => {
     getAllPlanets();

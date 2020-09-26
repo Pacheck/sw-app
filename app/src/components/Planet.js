@@ -23,7 +23,6 @@ const Planet = ({ planetInfo }) => {
 
   async function getFilmPresentData() {
     if (planetInfo.films.length > 0) {
-      console.log(planetInfo.films);
       planetInfo.films.map((film) => {
         Axios.get(film)
           .then((res) =>
