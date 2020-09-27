@@ -7,11 +7,15 @@ const Vehicle = ({ data }) => {
   const [vehicle, setVehicle] = useState([]);
 
   useEffect(() => {
+    let isMounted = true;
     getVehicle();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   function getVehicle() {
-    console.log(data.vehicles);
     if (data.vehicles.length > 0) {
       data.vehicles.map((carrin) => {
         Axios.get(carrin).then((res) =>
@@ -19,7 +23,6 @@ const Vehicle = ({ data }) => {
         );
       });
     } else {
-      console.log('sem money, sem carro');
       setVehicle((prevState) => [{ name: 'unknown' }]);
     }
   }

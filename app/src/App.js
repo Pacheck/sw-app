@@ -13,15 +13,7 @@ function App() {
     <div className="App">
       <Navbar />
       <Switch>
-        <Route
-          exact
-          path="/"
-          // component={Home}
-          // children={console.log('testando children')}
-          render={(props) => (
-            <Home {...props} title={'testando render props caralho'} />
-          )}
-        />
+        <Route exact path="/" component={Home} />
         <Route path="/Details" component={Details} />
       </Switch>
     </div>

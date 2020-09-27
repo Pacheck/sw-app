@@ -9,7 +9,8 @@ const HomeContainer = styled.div`
   align-items: center;
   justify-content: center; */
 
-  display: grid;
+  /* display: grid; */
+
   grid-template-columns: 1fr 1fr;
   align-items: center;
   justify-content: center;
