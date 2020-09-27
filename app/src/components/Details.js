@@ -4,9 +4,13 @@ import DetailsContainer from './styledComponent/DetailsContainer.js';
 import Natives from './Natives.js';
 
 const Details = (props) => {
-  const planetDetails = props.location.state;
+  const planetDetails = props.location.planetInfo
+    ? props.location.planetInfo
+    : props.location.state;
 
   const [nativeList, setNativeList] = useState([]);
+
+  console.log(planetDetails);
 
   const {
     name,

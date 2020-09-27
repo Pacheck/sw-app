@@ -9,7 +9,12 @@ const Natives = ({ residents }) => {
   const [vehicles, setVehicles] = useState([]);
 
   useEffect(() => {
+    let isMounted = true;
     getNativeDetail();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   //Methods
@@ -25,8 +30,10 @@ const Natives = ({ residents }) => {
     });
   }
 
+  console.log(filteredResidents);
+
   return (
-    <ul onClick={() => console.log(filteredResidents)}>
+    <ul>
       {filteredResidents.map((resident) => (
         <Resident data={resident.data} key={resident.data.url} />
       ))}

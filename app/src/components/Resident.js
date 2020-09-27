@@ -8,7 +8,12 @@ const Resident = ({ data }) => {
   const [specie, setSpecie] = useState('');
 
   useEffect(() => {
+    let isMounted = true;
     getSpecie();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   function getSpecie() {

@@ -1,50 +1,66 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import Axios from 'axios';
 import ReactPaginate from 'react-paginate';
-
 import './css/Paginator.css';
+import getAPI from '../hooks/api.js';
 
 //components
 import HomeContainer from './styledComponent/HomeContainer.js';
 import Planet from './Planet.js';
+import PlanetListContainer from './styledComponent/PlanetListContainer.js';
 
-const Home = ({ title }) => {
+const Home = () => {
+  const api = getAPI();
   const [planetInput, setPlanetInput] = useState('');
   const [allPlanetsList, setAllPlanetsList] = useState([]);
+  const [submitedInfo, setSubmitedInfo] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState({
     page: 0,
     pageRange: 0,
   });
 
-  console.log(title);
+  const history = useHistory();
 
   useEffect(() => {
     getAllPlanets();
+    return () => {
+      setIsLoading(false);
+    };
   }, [page.page]);
 
   //Methods
 
   async function getAllPlanets() {
+    setIsLoading(true);
     const pageIndex = page.page === 0 ? 1 : page.page;
 
-    await Axios.get(`https://swapi.dev/api/planets/?page=${pageIndex}`)
-      .then((res) => {
-        const planetCounter = res.data.count;
+    // const response = await Axios.get(
+    //   `https://swapi.dev/api/planets/?page=${pageIndex}`
+    // );
 
-        setPage((prevState) => ({
-          ...prevState,
-          pageRange: planetCounter / 10,
-        }));
+    // Continuar a implementação de hooks para limpar o código
 
-        setAllPlanetsList(res.data.results);
-        // console.log(res.data.results);
-      })
-      .catch((err) => console.log(err));
+    const response = await api(`?page=${pageIndex}`);
+    console.log(response);
+
+    const planetCounter = response.data.count;
+
+    setPage((prevState) => ({
+      ...prevState,
+      pageRange: planetCounter / 10,
+    }));
+
+    setAllPlanetsList(response.data.results);
   }
 
   function handleSubmit(e) {
     e.preventDefault();
+    if (planetInput) {
+      setSubmitedInfo(planetInput);
+      history.push('/Details', { planetInput: planetInput });
+    }
     console.log(allPlanetsList);
   }
 
@@ -57,47 +73,52 @@ const Home = ({ title }) => {
       ...prevState,
       page: e.selected + 1,
     }));
-    console.log(e.selected);
   }
-
-  console.log(page);
 
   return (
     <>
       <HomeContainer>
-        {/* <form onSubmit={handleSubmit}>
-        <input
-          placeholder="Find planets by names"
-          value={planetInput}
-          onChange={(e) => setPlanetInput(e.target.value)}
+        <form onSubmit={handleSubmit}>
+          <input
+            placeholder="Find planets by names"
+            value={planetInput}
+            onChange={(e) => setPlanetInput(e.target.value)}
+          />
+          <button>Search</button>
+        </form>
+
+        <hr
+          style={{
+            borderTop: '1px solid  #a9a9a9a9',
+            marginTop: '10px',
+          }}
         />
-        <button>Search</button>
-      </form>
 
-      <hr
-        style={{
-          borderTop: '1px solid  #a9a9a9a9',
-          marginTop: '10px',
-        }}
-      /> */}
-
-        {allPlanetsList.map((planet) => {
-          return (
-            <Planet
-              planetInfo={planet}
-              key={planet.name}
-              handlerPlanetClick={handlerPlanetClick}
-            />
-          );
-        })}
+        <PlanetListContainer>
+          {isLoading ? (
+            allPlanetsList.map((planet) => {
+              return (
+                <Planet
+                  planetInfo={planet}
+                  key={planet.name}
+                  handlerPlanetClick={handlerPlanetClick}
+                  planetInput={planetInput}
+                />
+              );
+            })
+          ) : (
+            <h1>.....Loading data</h1>
+          )}
+        </PlanetListContainer>
       </HomeContainer>
-      {/* <ReactPaginate
+      <ReactPaginate
         containerClassName="Pagination"
         onPageChange={handlePageClick}
         pageCount={page.pageRange}
         pageRangeDisplayed={6}
         marginPagesDisplayed={2}
-      /> */}
+        initialPage={0}
+      />
     </>
   );
 };
