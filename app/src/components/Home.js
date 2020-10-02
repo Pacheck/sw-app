@@ -36,10 +36,6 @@ const Home = () => {
     setIsLoading(true);
     const pageIndex = page.page === 0 ? 1 : page.page;
 
-    // const response = await Axios.get(
-    //   `https://swapi.dev/api/planets/?page=${pageIndex}`
-    // );
-
     // Continuar a implementação de hooks para limpar o código
 
     const response = await api(`?page=${pageIndex}`);
