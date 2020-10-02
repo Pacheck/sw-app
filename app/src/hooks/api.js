@@ -11,7 +11,7 @@ const GetAllFuckingPlanets = () => {
     const checkedParams = params ? params : '';
 
     const response = await Axios.get(`${API_URL}/${checkedParams}`);
-    // const JSONres = JSON.stringify(response);
+
     return response;
   }
 
