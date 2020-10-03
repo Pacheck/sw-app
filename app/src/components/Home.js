@@ -36,8 +36,6 @@ const Home = () => {
     setIsLoading(true);
     const pageIndex = page.page === 0 ? 1 : page.page;
 
-    // Continuar a implementação de hooks para limpar o código
-
     const response = await api(`?page=${pageIndex}`);
     console.log(response);
 
