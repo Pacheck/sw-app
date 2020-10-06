@@ -1,12 +1,7 @@
-import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
 const API_URL = 'https://swapi.dev/api/planets';
 
-const GetAllFuckingPlanets = () => {
-  useEffect(() => {
-    getPlanetData();
-  }, []);
-
+export const GetAllFuckingPlanets = () => {
   async function getPlanetData(params) {
     const checkedParams = params ? params : '';
 
