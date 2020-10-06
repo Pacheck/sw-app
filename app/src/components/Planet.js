@@ -53,7 +53,6 @@ const Planet = ({ planetInfo, planetInput }) => {
   }
 
   async function getPlanetDetailedInfo() {
-    // const planetName = planetInput ? planetInput : planetInfo.name;
     const planetName = filteredFilmsData.name;
 
     await Axios.get(`https://swapi.dev/api/planets/?search=${planetName}`)

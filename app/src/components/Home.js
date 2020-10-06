@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import Axios from 'axios';
+// import Axios from 'axios';
 import ReactPaginate from 'react-paginate';
 import './css/Paginator.css';
-import getAPI from '../hooks/api.js';
+import getAPI from '../services/api.js';
 
 //components
 import HomeContainer from './styledComponent/HomeContainer.js';
