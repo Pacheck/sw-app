@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 // import Axios from 'axios';
 import ReactPaginate from 'react-paginate';
 import './css/Paginator.css';
-import getAPI from '../services/api.js';
+import { GetAllFuckingPlanets } from '../services/api.js';
 
 //components
 import HomeContainer from './styledComponent/HomeContainer.js';
@@ -11,7 +11,7 @@ import Planet from './Planet.js';
 import PlanetListContainer from './styledComponent/PlanetListContainer.js';
 
 const Home = () => {
-  const api = getAPI();
+  const api = GetAllFuckingPlanets();
   const [planetInput, setPlanetInput] = useState('');
   const [allPlanetsList, setAllPlanetsList] = useState([]);
   const [submitedInfo, setSubmitedInfo] = useState('');
@@ -36,7 +36,7 @@ const Home = () => {
     setIsLoading(true);
     const pageIndex = page.page === 0 ? 1 : page.page;
 
-    const response = await api(`?page=${pageIndex}`);
+    const response = await api(pageIndex);
     console.log(response);
 
     const planetCounter = response.data.count;

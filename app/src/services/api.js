@@ -1,16 +1,8 @@
 import Axios from 'axios';
 const API_URL = 'https://swapi.dev/api/planets';
 
-export const GetAllFuckingPlanets = () => {
-  async function getPlanetData(params) {
-    const checkedParams = params ? params : '';
+export const GetAllFuckingPlanets = async (page = 1) => {
+  const response = await Axios.get(`${API_URL}/?page=${page}`);
 
-    const response = await Axios.get(`${API_URL}/${checkedParams}`);
-
-    return response;
-  }
-
-  return getPlanetData;
+  return response;
 };
-
-export default GetAllFuckingPlanets;
