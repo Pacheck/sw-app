@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 // import Axios from 'axios';
 import ReactPaginate from 'react-paginate';
 import './css/Paginator.css';
-import { GetAllFuckingPlanets } from '../services/api.js';
+import usePlanets from '../hooks/usePlanets.jsx';
 
 //components
 import HomeContainer from './styledComponent/HomeContainer.js';
@@ -11,7 +11,7 @@ import Planet from './Planet.js';
 import PlanetListContainer from './styledComponent/PlanetListContainer.js';
 
 const Home = () => {
-  const api = GetAllFuckingPlanets();
+  const { loading, planets, actualPage, setActualPage } = usePlanets();
   const [planetInput, setPlanetInput] = useState('');
   const [allPlanetsList, setAllPlanetsList] = useState([]);
   const [submitedInfo, setSubmitedInfo] = useState('');
@@ -34,19 +34,16 @@ const Home = () => {
 
   async function getAllPlanets() {
     setIsLoading(true);
-    const pageIndex = page.page === 0 ? 1 : page.page;
-
-    const response = await api(pageIndex);
-    console.log(response);
-
-    const planetCounter = response.data.count;
-
-    setPage((prevState) => ({
-      ...prevState,
-      pageRange: planetCounter / 10,
-    }));
-
-    setAllPlanetsList(response.data.results);
+    // const pageIndex = page.page === 0 ? 1 : page.page;
+    // const response = await api(pageIndex);
+    // console.log(response);
+    console.log(planets);
+    // const planetCounter = response.data.count;
+    // setPage((prevState) => ({
+    //   ...prevState,
+    //   pageRange: planetCounter / 10,
+    // }));
+    // setAllPlanetsList(response.data.results);
   }
 
   function handleSubmit(e) {
